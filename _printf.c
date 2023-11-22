@@ -29,6 +29,7 @@ int _printf(const char *format, ...)
 
                 j++;
             }
+	    i++;
         }
         else if (format[i] == '%' && format[i+1] == '%')
         {
@@ -40,8 +41,9 @@ int _printf(const char *format, ...)
         {
             _putchar(format[i]);
             len+=1;
-        }
+
 	i++;
+        }
     }
     return len;
     va_end(list);
