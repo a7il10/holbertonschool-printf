@@ -2,20 +2,23 @@
 #define MAIN_H
 
 #include <stdarg.h>
-#include <stddef.h>
-#include <stdio.h>
-
-typedef struct print_data
+/**
+ * struct print - Structure containing identifiers
+ * @t: type to print
+ * @f: function to print
+ */
+typedef struct print
 {
-	char *type;
-	int (*print)(va_list list);
-}print_data;
-
+	char *t;
+	int (*f)(va_list);
+} print_t;
 
 int _putchar(char c);
+int (*check_formats(const char *format))(va_list);
 int _printf(const char *format, ...);
-int print_char(va_list char_list);
-int print_string(va_list string_list);
-int _putchar(char c);
+int print_c(va_list ch_list);
+int print_s(va_list s_list);
+int print_i(va_list i_list);
+int print_d(va_list d_list);
 
 #endif

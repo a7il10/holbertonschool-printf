@@ -1,32 +1,19 @@
 #include "main.h"
-#include <stddef.h>
+#include <stdlib.h>
+
+/**
+ * _printf - Function that prints with a format
+ * @format: Format passed to printf
+ * Return: number of characters printed
+ */
 
 int _printf(const char *format, ...)
 {
-    va_list list;
-    int i, j, len = 0;
+	unsigned int i = 0, count = 0;
+	va_list mylist;
+	int (*f)(va_list);
 
-    print_data print_functions[]=
-    {
-        {"c", print_char},
-        {"s", print_string},
-        {NULL, NULL}
-    };
-    va_start(list, format);
-    i = 0;
-    while (format != NULL && format[i] != '\0')
-    {
-        if (format[i] == '%' && format[i+1] != '%')
-        {
-            j = 0;
-            while (print_functions[j].type != NULL)
-            {
-                if (format[i+1] == print_functions[j].type[0])
-                {
-                    len = len + print_functions[j].print(list);
-                    i++;
-                }
-
+<<<<<<< HEAD
                 j++;
             }
 	    i++;
@@ -47,4 +34,36 @@ int _printf(const char *format, ...)
     }
     return len;
     va_end(list);
+=======
+	if (format == NULL)
+		return (-1);
+	va_start(mylist, format);
+	while (format[i])
+	{
+		for (; format[i] != '%' && format[i]; i++)
+		{
+			_putchar(format[i]);
+			count++;
+		}
+		if (!format[i])
+			return (count);
+		f = check_formats(&format[i + 1]);
+		if (f != NULL)
+		{
+			count += f(mylist);
+			i += 2;
+			continue;
+		}
+		if (!format[i + 1])
+			return (-1);
+		_putchar(format[i]);
+		count++;
+		if (format[i + 1] == '%')
+			i += 2;
+		else
+			i++;
+	}
+	va_end(mylist);
+	return (count);
+>>>>>>> c1f1758e8c19a0c9f09952fd601a090dbac9910d
 }
