@@ -13,7 +13,6 @@ int _printf(const char *format, ...)
 	va_list mylist;
 	int (*f)(va_list);
 
-<<<<<<< HEAD
                 j++;
             }
 	    i++;
@@ -34,9 +33,6 @@ int _printf(const char *format, ...)
     }
     return len;
     va_end(list);
-=======
-	if (format == NULL)
-		return (-1);
 	va_start(mylist, format);
 	while (format[i])
 	{
@@ -65,5 +61,4 @@ int _printf(const char *format, ...)
 	}
 	va_end(mylist);
 	return (count);
->>>>>>> c1f1758e8c19a0c9f09952fd601a090dbac9910d
 }
