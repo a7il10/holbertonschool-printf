@@ -13,26 +13,8 @@ int _printf(const char *format, ...)
 	va_list mylist;
 	int (*f)(va_list);
 
-                j++;
-            }
-	    i++;
-        }
-        else if (format[i] == '%' && format[i+1] == '%')
-        {
-            _putchar('%');
-            len++;
-            i++;
-        }
-        else
-        {
-            _putchar(format[i]);
-            len+=1;
-
-	i++;
-        }
-    }
-    return len;
-    va_end(list);
+	if (format == NULL)
+		return (-1);
 	va_start(mylist, format);
 	while (format[i])
 	{

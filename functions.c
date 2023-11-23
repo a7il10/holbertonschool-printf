@@ -1,5 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include <stdarg.h>
 
 /**
  * print_c - Prints characters
@@ -44,41 +46,31 @@ int print_s(va_list s_list)
 
 int print_i(va_list i_list)
 {
-	int n = va_arg(i_list, int);
-	int num, last = n % 10, digit, exp = 1;
-	int  i = 1;
+	long int number = (long int)va_arg(i_list, int);
+	long int l = 1;
+	long int t = number;
+	int r = 1;
 
-	n = n / 10;
-	num = n;
-
-	if (last < 0)
+	if (number < 0)
 	{
 		_putchar('-');
-		num = -num;
-		n = -n;
-		last = -last;
-		i++;
+		r++;
+		t = t * -1;
+		number = number * -1;
 	}
-	if (num > 0)
+	while (t > 9)
 	{
-		while (num / 10 != 0)
-		{
-			exp = exp * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (exp > 0)
-		{
-			digit = num / exp;
-			_putchar(digit + '0');
-			num = num - (digit * exp);
-			exp = exp / 10;
-			i++;
-		}
+		t = t / 10;
+		l = l * 10;
+		r++;
 	}
-	_putchar(last + '0');
+	while (l > 0)
+	{
+		_putchar('0' + (number / l) % 10);
+		l = l / 10;
+	}
 
-	return (i);
+	return (r);
 }
 
 /**
@@ -89,40 +81,30 @@ int print_i(va_list i_list)
 
 int print_d(va_list d_list)
 {
-	int n = va_arg(d_list, int);
-	int num, last = n % 10, digit;
-	int  i = 1;
-	int exp = 1;
+	long int number = (long int)va_arg(d_list, int);
+	long int l = 1;
+	long int t = number;
+	int r = 1;
 
-	n = n / 10;
-	num = n;
-
-	if (last < 0)
+	if (number < 0)
 	{
 		_putchar('-');
-		num = -num;
-		n = -n;
-		last = -last;
-		i++;
+		r++;
+		t = t * -1;
+		number = number * -1;
 	}
-	if (num > 0)
+	while (t > 9)
 	{
-		while (num / 10 != 0)
-		{
-			exp = exp * 10;
-			num = num / 10;
-		}
-		num = n;
-		while (exp > 0)
-		{
-			digit = num / exp;
-			_putchar(digit + '0');
-			num = num - (digit * exp);
-			exp = exp / 10;
-			i++;
-		}
+		t = t / 10;
+		l = l * 10;
+		r++;
 	}
-	_putchar(last + '0');
+	while (l > 0)
+	{
+		_putchar('0' + (number / l) % 10);
+		l = l / 10;
+	}
 
-	return (i);
+	return (r);
 }
+
