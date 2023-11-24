@@ -20,5 +20,7 @@ int print_c(va_list ch_list);
 int print_s(va_list s_list);
 int print_i(va_list i_list);
 int print_d(va_list d_list);
+int print_binary(va_list n_list);
+
 
 #endif

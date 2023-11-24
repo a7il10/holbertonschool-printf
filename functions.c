@@ -108,3 +108,40 @@ int print_d(va_list d_list)
 	return (r);
 }
 
+
+/**
+ * print_binary - prints the binary representation of a number
+ * @n_list: the number to be converted
+ * Print the binary number in reverse order
+ * Return: the length of the binary number
+ */
+
+int print_binary(va_list n_list)
+{
+	int quot = va_arg(n_list, int);
+	int remain[32];
+	int i, len = 0;
+
+	if (quot < 0)
+		quot = -quot;
+	while (quot >= 1)
+	{
+		remain[len] = quot % 2;
+		quot = quot / 2;
+		len++;
+	}
+	if (n < 0)
+	{
+		remain[len] = 1;
+		_putchar(remain[len] + '0');
+	}
+	i = len - 1;
+	while (i >= 0)
+	{
+		putchar(remain[i] + '0');
+		i--;
+	}
+
+	return (len);
+}
+
