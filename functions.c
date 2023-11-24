@@ -4,107 +4,65 @@
 #include <stdarg.h>
 
 /**
- * print_c - Prints characters
- * @c_list: Character
- * Return: 1: The lenght of a char
+ * print_char - Prints a character
+ * @list: va_list of arguments
+ * Return: 1 (number of characters printed)
  */
-
-int print_c(va_list c_list)
+int print_char(va_list list)
 {
-	char s;
-
-	s = va_arg(c_list, int);
-	_putchar(s);
+	_putchar(va_arg(list, int));
+	
 	return (1);
 }
 
 /**
- * print_s - Prints strings
- * @s_list: Strings
- * Return: The lenght of the string
+ * print_string - Prints a string
+ * @list: va_list of arguments
+ * Return: i (number of characters printed)
  */
-
-int print_s(va_list s_list)
+int print_string(va_list list)
 {
-	int count;
-	char *str = va_arg(s_list, char *);
+	char *str = va_arg(list, char *);
+	int i = 0;
 
-	if (str == NULL)
-		str = "(null)";
-	for (count = 0; str[count]; count++)
+	while (str[i])
 	{
-		_putchar(str[count]);
+		_putchar(str[i]);
+		i++;
 	}
-	return (count);
+
+	return (i);
 }
 
 /**
- * print_i - Prints integer
- * @i_list: Int to print
- * Return: Numbers of integers printed
+ * print_number - Prints an integer
+ * @n: Integer to print
  */
-
-int print_i(va_list i_list)
+void print_number(int n)
 {
-	long int number = (long int)va_arg(i_list, int);
-	long int l = 1;
-	long int t = number;
-	int r = 1;
-
-	if (number < 0)
-	{
-		_putchar('-');
-		r++;
-		t = t * -1;
-		number = number * -1;
-	}
-	while (t > 9)
-	{
-		t = t / 10;
-		l = l * 10;
-		r++;
-	}
-	while (l > 0)
-	{
-		_putchar('0' + (number / l) % 10);
-		l = l / 10;
-	}
-
-	return (r);
+	if (n / 10)
+		print_number(n / 10);
+	_putchar((n % 10) + '0');
 }
 
 /**
- * print_d - Prints decimal
- * @d_list: Int to print
- * Return: Numbers of decimals printed
+ * print_int - Prints an integer from a va_list
+ * @list: va_list of arguments
+ * Return: count (number of characters printed)
  */
-
-int print_d(va_list d_list)
+int print_int(va_list list)
 {
-	long int number = (long int)va_arg(d_list, int);
-	long int l = 1;
-	long int t = number;
-	int r = 1;
+	int num = va_arg(list, int);
+	int len = 0;
 
-	if (number < 0)
+	if (num < 0)
 	{
 		_putchar('-');
-		r++;
-		t = t * -1;
-		number = number * -1;
-	}
-	while (t > 9)
-	{
-		t = t / 10;
-		l = l * 10;
-		r++;
-	}
-	while (l > 0)
-	{
-		_putchar('0' + (number / l) % 10);
-		l = l / 10;
+		num = -num;
 	}
 
-	return (r);
+	print_number(num);
+	len++;
+	
+	return (len);
 }
-
