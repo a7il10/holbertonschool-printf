@@ -120,7 +120,7 @@ int print_binary(va_list n_list)
 {
 	int n = va_arg(n_list, int);
 	int quot = n;
-	int remain[32];
+	int remain[64];
 	int i, len = 0;
 
 	if (quot < 0)
